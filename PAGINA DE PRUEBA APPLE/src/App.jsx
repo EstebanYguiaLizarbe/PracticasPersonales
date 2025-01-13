@@ -2,6 +2,7 @@ import { NavBar } from "./components/NavBar"
 import Highlights from "./components/Highlights"
 import Hero from "./components/Hero"
 
+
 function App() {
 
   return (
@@ -10,6 +11,7 @@ function App() {
         <NavBar></NavBar>
         <Hero></Hero>
         <Highlights></Highlights>
+
       </main>
     </>
   )
