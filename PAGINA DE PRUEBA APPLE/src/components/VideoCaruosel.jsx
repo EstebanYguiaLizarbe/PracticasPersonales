@@ -53,6 +53,30 @@ const VideoCaruosel = () => {
         console.log(videoRef.current, "=======================")
     }
 
+    const handleProcces = (type, i) => {
+        switch(type) {
+            case  'video-end' :
+                setVideo((pre) => ({...pre, isEnd: true, videoId: i +1}))
+            break
+
+            case  'video-last' :
+                setVideo((pre) => ({...pre, isLastVideo: true}))
+            break
+
+            case  'video-reset' :
+                setVideo((pre) => ({...pre, isLastVideo: true, videoId: 0}))
+            break
+
+            case  'play' :
+                setVideo((pre) => ({...pre, isPlaying: !pre.isPlaying}))
+            break
+
+            default :
+                return video
+
+        }
+    }
+
   return (
     <>
         <button onClick={handleVer}>Ver que hay</button>
@@ -94,9 +118,10 @@ const VideoCaruosel = () => {
                 ))}
             </div>
 
-            {/* me quede en el 1:40 */}
+            {/* me quede en el 1:44 : 28 */}
             <button className='control-btn'>
-                <img src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg} alt={isLastVideo ? 'replay' : !isPlaying ? 'play': 'pause'} />
+                <img src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg} alt={isLastVideo ? 'replay' : !isPlaying ? 'play': 'pause'} 
+                onClick={isLastVideo ? () => handleProcces('video-reset') : !isPlaying ? () => handleProcces('play') : () => handleProcces('pause') } />
             </button>
         </div>
     </>
